@@ -1,0 +1,45 @@
+.App {
+  text-align: center;
+  width: 100%;
+}
+
+main {
+  width: 95vw;
+  min-width: 320px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.check-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 10px;
+  width: 320px;
+  gap: 20px;
+  svg {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    color: white;
+    background-color: black;
+    border-radius: 15px;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+    background-color: black;
+    color: white;
+  }
+}

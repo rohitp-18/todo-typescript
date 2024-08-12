@@ -1,0 +1,69 @@
+header {
+  width: 100%;
+}
+
+nav {
+  width: 95vw;
+  min-width: 320px;
+  background-color: #ecedee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 15px;
+  margin: 20px auto;
+  box-shadow: -1px 2px 5px #a1a1a1;
+}
+
+.nav-search {
+  border: none;
+  background-color: white;
+  margin: 2px;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 40px;
+  box-shadow: -1px 2px 5px #a1a1a1;
+  color: #677676;
+}
+
+.nav-search input {
+  margin: 0;
+  padding: 10px;
+  color: #677676 !important;
+}
+
+.nav-search fieldset {
+  display: none;
+}
+
+.nav-form-select {
+  margin: 2px;
+  background-color: white;
+  min-width: 150px;
+  height: 40px;
+  font-size: 15px;
+  border-radius: 15px;
+  box-shadow: -1px 2px 5px #a1a1a1;
+}
+
+.nav-form-select svg {
+  height: 20px;
+  width: 20px;
+}
+
+.nav-form-select > div {
+  height: 40px;
+}
+
+.nav-form-select > div > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #677676;
+  font-size: 17px;
+}
+
+.nav-form-select fieldset {
+  display: none;
+}

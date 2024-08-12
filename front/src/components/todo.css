@@ -1,0 +1,151 @@
+.task-section {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  width: 24%;
+  background-color: #ecedee;
+  border-radius: 15px;
+  box-shadow: -1px 2px 5px #a1a1a1;
+  padding: 10px 20px;
+}
+
+.task-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  padding-bottom: 15px;
+  gap: 10px;
+  opacity: 0.8;
+}
+
+.task-header div {
+  height: 10px;
+  width: 10px;
+  background-color: #5858fc;
+  border-radius: 100%;
+}
+
+.task-header span {
+  padding: 3px 9px;
+  background-color: #d6d6d6;
+  border-radius: 100%;
+  font-size: small;
+}
+
+.task-div {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.task-div-card {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: start;
+  padding: 10px 12px;
+  width: 100%;
+  height: 180px;
+  border-radius: 15px !important;
+  box-shadow: -1px 2px 5px #a1a1a1 !important;
+}
+
+.task-div-card .flex-col-start {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: start;
+}
+
+.task-div-card .task-more-low {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: small;
+}
+
+.task-div-card .task-more-low span {
+  padding: 2px 4px;
+  opacity: 0.65;
+  font-size: 0.6;
+}
+
+.task-div-card .task-more-low button span {
+  background-color: unset;
+}
+
+.task-div-card h3 {
+  opacity: 0.91;
+  font-size: 1.08rem;
+  padding-bottom: 3px;
+}
+
+.task-div-card p {
+  opacity: 0.85;
+  font-size: 0.75rem;
+  text-align: left;
+}
+
+.task-div-card .deadline {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: start;
+}
+
+.task-div-card .deadline h6 {
+  font-size: 0.77rem;
+}
+
+.task-div-card .deadline span {
+  font-size: 0.73rem;
+}
+
+.low {
+  background-color: #ffcccc;
+  color: #ff5656;
+}
+
+.orange {
+  background-color: #ff9161;
+}
+
+.complete {
+  background-color: #91fb8f;
+  color: #040;
+}
+
+.menuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.6rem;
+}
+
+.date-picker {
+  position: relative;
+}
+.picker {
+  input,
+  fieldset {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+  label {
+    display: none;
+  }
+  button {
+    position: absolute;
+    top: -2px;
+    left: -135px;
+    width: 100px;
+  }
+
+  opacity: 0;
+}
