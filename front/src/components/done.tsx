@@ -1,24 +1,23 @@
 import React, { useContext, useState } from "react";
 import {
   Button,
-  Card,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   Divider,
-  IconButton,
   Menu,
   MenuItem,
-  Modal,
 } from "@mui/material";
 import "./todo.css";
-import { Delete, Edit, MoreHoriz } from "@mui/icons-material";
+import { Delete, Edit } from "@mui/icons-material";
 import { AlertContext } from "./alertProvider";
-import axios from "axios";
+import axios from "../context/axios";
 import DialogContent2 from "./dialogContent";
 import Model from "./model";
+import TaskCard from "./taskCard";
+import DragCompo from "./dragCompo";
 
 function Done() {
   const [anchorEl, setAnchorEl] = useState();
@@ -61,11 +60,6 @@ function Done() {
 
   const onSubmit = async () => {
     try {
-      const { data } = await axios.put(
-        // `http://localhost:5000/tasks/${form?._id}`,
-        `${window.location.origin}/tasks/${form?._id}`,
-        form
-      );
       getData();
       setvariant("updated");
       setSuccess(true);
@@ -78,10 +72,7 @@ function Done() {
   const ondeleted = async () => {
     setDeleteD(false);
     try {
-      const { data } = await axios.delete(
-        // `http://localhost:5000/tasks/${form?._id}`
-        `${window.location.origin}/tasks/${form?._id}`
-      );
+      await axios.delete(`tasks/${form?._id}`);
       getData();
       setvariant("deleted");
       setSuccess(true);
@@ -100,26 +91,12 @@ function Done() {
       </div>
       <Divider sx={{ bgcolor: "#25a723", height: "2px" }} />
       <div className="task-div">
-        {data.completed?.map((d: any) => (
-          <Card key={d._id} className="task-div-card">
-            <div className="flex-col-start">
-              <div className="task-more-low">
-                <span className="complete">Completed</span>
-                <IconButton
-                  onClick={(e) => click(e, d)}
-                  sx={{ bgcolor: "white" }}
-                >
-                  <MoreHoriz />
-                </IconButton>
-              </div>
-              <h3>{d.title}</h3>
-              <p>{d.description}</p>
-            </div>
-            <div className="deadline">
-              <h6>Deadline: </h6>
-              <span>{d.deadline}</span>
-            </div>
-          </Card>
+        <DragCompo index={0} varient={"completed"} />
+        {data.completed?.map((d: any, i: number) => (
+          <>
+            <TaskCard d={d} click={click} />
+            <DragCompo index={i + 1} varient={d.progress} />
+          </>
         ))}
         <Menu
           open={open}

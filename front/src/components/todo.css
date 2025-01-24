@@ -34,10 +34,8 @@
 }
 
 .task-div {
-  padding-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .task-div-card {
@@ -50,6 +48,13 @@
   height: 180px;
   border-radius: 15px !important;
   box-shadow: -1px 2px 5px #a1a1a1 !important;
+  cursor: grab;
+}
+
+.task-div-card:active {
+  opacity: 0.7;
+  border: 1px solid #a1a1a1;
+  cursor: grabbing;
 }
 
 .task-div-card .flex-col-start {

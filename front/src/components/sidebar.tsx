@@ -10,7 +10,7 @@ import "./sidebar.css";
 import Model from "./model";
 import DialogContent from "./dialogContent";
 import { AlertContext } from "./alertProvider";
-import axios from "axios";
+import axios from "../context/axios";
 
 function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -24,8 +24,7 @@ function Sidebar() {
 
   const onSubmit = async () => {
     try {
-      const { data } = await axios.post(`${window.location.origin}/tasks/`, {
-        //"http://localhost:5000/tasks/",
+      await axios.post(`/tasks/new`, {
         title: form.title,
         description: form.description,
         deadline: form.deadline,

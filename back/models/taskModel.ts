@@ -12,9 +12,17 @@ const taskSchema = new mongoose.Schema(
     deadline: {
       type: String,
     },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+      require: true,
+    },
     progress: {
       type: String,
       default: "todo",
+    },
+    order: {
+      type: Number,
     },
     createdAt: {
       type: Date,
