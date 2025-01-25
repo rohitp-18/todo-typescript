@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useUser } from "../context/userContext";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { AlertContext } from "./alertProvider";
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useUser();
+  const { user, loading } = useContext(AlertContext);
   const navigate = useNavigate();
 
   useEffect(() => {

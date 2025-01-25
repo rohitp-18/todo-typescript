@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import {
   Button,
   Dialog,
@@ -19,7 +19,15 @@ import Model from "./model";
 import TaskCard from "./taskCard";
 import DragCompo from "./dragCompo";
 
-function Todo() {
+function Todo({
+  varient,
+  bgcolor,
+  heading,
+}: {
+  varient: string;
+  bgcolor: string;
+  heading: string;
+}) {
   const [anchorEl, setAnchorEl] = useState();
   const [open, setOpen] = useState(false);
   const [deleteD, setDeleteD] = useState(false);
@@ -60,7 +68,7 @@ function Todo() {
 
   const onSubmit = async () => {
     try {
-      const { data } = await axios.put(`tasks/${form?._id}`, form);
+      await axios.put(`tasks/${form?._id}`, form);
       getData();
       setvariant("updated");
       setSuccess(true);
@@ -73,7 +81,7 @@ function Todo() {
   const ondeleted = async () => {
     setDeleteD(false);
     try {
-      const { data } = await axios.delete(`/tasks/${form?._id}`);
+      await axios.delete(`/tasks/${form?._id}`);
       getData();
       setvariant("deleted");
       setSuccess(true);
@@ -85,18 +93,18 @@ function Todo() {
   return (
     <section className="task-section">
       <div className="task-header">
-        <div></div>
-        <h3>To Do</h3>
-        <span>{data.todo.length}</span>
+        <div style={{ backgroundColor: bgcolor }}></div>
+        <h3>{heading}</h3>
+        <span>{data[varient].length}</span>
       </div>
-      <Divider sx={{ bgcolor: "#5858ff", height: "2px" }} />
+      <Divider sx={{ bgcolor, height: "2px" }} />
       <div className="task-div">
-        <DragCompo index={0} varient="todo" />
-        {data.todo?.map((d: any, i: number) => (
-          <>
+        <DragCompo index={0} varient={varient} />
+        {data[varient]?.map((d: any, i: number) => (
+          <Fragment key={d._id}>
             <TaskCard d={d} click={click} />
-            <DragCompo index={i + 1} varient="todo" />
-          </>
+            <DragCompo index={i + 1} varient={varient} />
+          </Fragment>
         ))}
         <Menu
           open={open}

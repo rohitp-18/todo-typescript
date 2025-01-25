@@ -67,3 +67,10 @@ nav {
 .nav-form-select fieldset {
   display: none;
 }
+
+@media (max-width: 700px) {
+  .nav-form-select span.span b,
+  .nav-form-select span.span {
+    display: none;
+  }
+}

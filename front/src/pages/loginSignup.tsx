@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./loginSignup.css"; // Import your CSS file
 import { Button } from "@mui/material";
-import { useUser } from "../context/userContext";
 import { AlertContext } from "../components/alertProvider";
 import axios from "../context/axios";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 const LoginSignup = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
 
-  const { user, loading, setUser, setLoading } = useUser();
-  const { sendAlert } = useContext(AlertContext);
+  const { sendAlert, user, loading, setUser, setLoading } =
+    useContext(AlertContext);
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -74,6 +73,7 @@ const LoginSignup = () => {
       setPassword("");
       navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (

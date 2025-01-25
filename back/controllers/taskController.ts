@@ -5,7 +5,7 @@ import ErrorHandler from "../utils/errorHandler";
 
 const getAllTasks = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const tasks = await Task.find({ user: req.user }).sort({ order: 1 });
+    const tasks = await Task.find({ user: req.user._id }).sort({ order: 1 });
 
     res.status(200).json({
       success: true,
@@ -24,13 +24,17 @@ const newTask = expressAsyncHandler(
       return next(new ErrorHandler("Please fill all required fields", 403));
     }
 
-    const index = await Task.find({ user: req.user._id }).countDocuments();
+    const index = await Task.find({
+      user: req.user._id,
+      progress: "todo",
+    }).countDocuments();
 
     const task = await Task.create({
       title,
       description,
       deadline,
       order: index,
+      user: req.user._id,
     });
 
     res.status(200).json({
@@ -91,15 +95,25 @@ const deleteTask = expressAsyncHandler(
 );
 
 // change order of tasks
+// PUT /api/v1/task/changeorder
 const changeOrder = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const { tasks } = req.body;
+    const { tasks, removeTask, progress } = req.body;
 
-    tasks.forEach(async (task: string, index: number) => {
-      await Task.findOneAndUpdate(
-        { _id: task, user: req.user._id },
-        { order: index }
-      );
+    const task = await Task.findOne({ _id: removeTask, user: req.user._id });
+
+    tasks.map(async (task: string, index: number) => {
+      if (task === removeTask) {
+        await Task.findOneAndUpdate(
+          { _id: task, user: req.user._id },
+          { order: index, progress }
+        );
+      } else {
+        await Task.findOneAndUpdate(
+          { _id: task, user: req.user._id },
+          { order: index }
+        );
+      }
     });
 
     res.status(200).json({

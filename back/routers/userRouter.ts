@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   getUsers,
   loginUser,
+  logoutUser,
   registerUser,
   updateProfile,
 } from "../controllers/userController";
@@ -13,6 +14,7 @@ const router = Router();
 router.get("/", auth, getUsers);
 router.post("/login", loginUser);
 router.post("/register", registerUser);
+router.get("/logout", auth, logoutUser);
 router.put("/update", auth, upload.single("image"), updateProfile);
 
 export default router;
